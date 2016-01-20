@@ -1,27 +1,28 @@
 var bio = {
-	"name": "Ryan Hendrix",
-	"role": "Web Developer",
-	"contacts": {
-		"mobile": "xxx-xxx-xxxx",
-		"email": "ryanjhendrix@gmail.com",
-		"github": "rhx1138",
-		"twitter": "None",
-		"location": "San Rafael, CA"
-	},
-	"welcomeMessage": "lorem ipsoum dolor sit amet etc etc etc.",
-	"skills": ["programming", "teaching", "JS", "WebDev"],
-	"bioPic": "images/fry.jpg"}
+    "name": "Ryan Hendrix",
+    "role": "Web Developer",
+    "contacts": {
+        "mobile": "xxx-xxx-xxxx",
+        "email": "ryanjhendrix@gmail.com",
+        "github": "rhx1138",
+        "twitter": "None",
+        "location": "San Rafael, CA"
+    },
+    "welcomeMessage": "I am currently working as a freelance Web Developer.",
+    "skills": ["programming", "teaching", "JS", "WebDev"],
+    "picture": "images/profile.jpg"
+};
 
 var work = {
-"jobs": [
-		{
-			"employer": "Language Training Center",
-			"title": "Project Manager",
-			"dates": "January 2011 - Feburary",
-			"description": "lorem epsem lorem epsemlorem epsem "
+    "jobs": [
+        {
+            "employer": "Language Training Center",
+            "title": "Project Manager",
+            "dates": "January 2011 - Feburary",
+            "description": "lorem epsem lorem epsemlorem epsem "
 		}
 	]
-}
+};
 //
 //var projects = {
 //	"projects": [
@@ -62,19 +63,13 @@ var work = {
 
 
 
-var charEscape = function(_html) {
-    var newHTML = _html;
-
-    newHTML = _html.replace(/</g, "&lt;");
-    newHTML = newHTML.replace(/>/g, "&gt;");
-
-    return newHTML;
-};
 
 var formattedName = HTMLheaderName.replace("%data%", bio.name);
 var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-var formattedWorkExperience; 
-var formattedBioPic;
+var formattedBioPic = HTMLbioPic.replace("%data%", bio.picture);
+
+var formattedWorkExperience;
+//var formattedBioPic;
 
 var formattedContactInfo = [];
 formattedContactInfo.push(HTMLemail.replace("%data%", bio.contacts.email));
@@ -84,14 +79,12 @@ formattedContactInfo.push(HTMLlocation.replace("%data%", bio.contacts.location))
 
 $("#header").append(formattedName);
 $("#header").append(formattedRole);
-
-for(i in formattedContactInfo) {
-	$("#topContacts").append(formattedContactInfo[i]);
-	$("#footerContacts").append(formattedContactInfo[i]);
-}
+$("#header").append(formattedBioPic);
+//$("#header").append(formattedWelcomeMsg);
 
 
-if(bio.skills.length > 0) {
+
+if (bio.skills.length > 0) {
     $("#header").append(HTMLskillsStart);
     var formattedSkills = HTMLskills.replace("%data%", bio.skills[0]);
     $("#skills").append(formattedSkills);
@@ -103,17 +96,21 @@ if(bio.skills.length > 0) {
     $("#skills").append(formattedSkills);
 }
 
+for (i in formattedContactInfo) {
+    $("#topContacts").append(formattedContactInfo[i]);
+    $("#footerContacts").append(formattedContactInfo[i]);
+}
+
 for (job in work.jobs) {
     $("#workExperience").append(HTMLworkStart);
-    
+
     var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
     var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
     var formattedEmployerTitle = formattedEmployer + formattedTitle;
-    
-    $(".work-entry:last").append(formattedEmployerTitle);
-    
-}
 
+    $(".work-entry:last").append(formattedEmployerTitle);
+
+}
 
 
 $("#main").append(work["position"]);
@@ -121,8 +118,13 @@ $("#main").append(education.name);
 $("#topContacts").append(bio.contacts);
 $("#workExperience").append(bio.skill);
 
-
-//HTML 
-
-
+//
+//var charEscape = function (_html) {
+//    var newHTML = _html;
+//
+//    newHTML = _html.replace(/</g, "&lt;");
+//    newHTML = newHTML.replace(/>/g, "&gt;");
+//
+//    return newHTML;
+//};
 
